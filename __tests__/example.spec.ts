@@ -12,7 +12,7 @@ test("catch JavaScript errors", async ({ page }) => {
   await page.goto("http://localhost:5173/") // replace with your actual URL
 
   // Verify the page loads without JavaScript errors
-  await expect(page).toHaveTitle("Your Page Title") // Replace with actual title of your app
+  await expect(page).toHaveTitle("Vite + React + TS") // Replace with actual title of your app
 
   // Additional checks for your app can go here
 })
