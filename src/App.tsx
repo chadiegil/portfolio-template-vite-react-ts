@@ -1,11 +1,13 @@
-import Button from "@components/ui/button/button"
+import { Provider } from "react-redux"
 import "./App.css"
-
+import { store } from "@redux/store"
+import { AppInitializer } from "@features/app-initializer"
 function App() {
   return (
     <>
-      <h1 className="bg-blue-100">Hello</h1>
-      <Button />
+      <Provider store={store}>
+        <AppInitializer />
+      </Provider>
     </>
   )
 }
