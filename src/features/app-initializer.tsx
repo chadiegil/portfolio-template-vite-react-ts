@@ -5,7 +5,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import { guestRoutes } from "@routes/public-route"
 
 const router = createBrowserRouter([
-  guestRoutesss,
+  guestRoutes,
   // authRoutes,
   // privateRoutes,
   // otherRoutes,
