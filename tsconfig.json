@@ -16,6 +16,15 @@
     "baseUrl": ".",
     "paths": {
       "@components/*": ["./src/components/*"],
+      "@redux/*": ["./src/redux/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@custom-types/*": ["./src/custom-types/*"],
+      "@features/*": ["./src/features/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@services/*": ["./src/services/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@routes/*": ["./src/routes/*"],
     },
 
     /* Linting */
