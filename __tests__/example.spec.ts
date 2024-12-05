@@ -1,18 +1,17 @@
 import { test, expect } from "@playwright/test"
 
-test("catch JavaScript errors", async ({ page }) => {
-  // Listen for console errors
-  page.on("console", (msg) => {
-    if (msg.type() === "error") {
-      console.error(`JavaScript Error: ${msg.text()}`)
-    }
+test.describe("Home Page", () => {
+  test("should render correctly", async ({ page }) => {
+    // Navigate to the home page
+    await page.goto("/")
+
+    // Get the page title
+    const title = await page.title()
+
+    // Log the title (optional)
+    console.log("Page title:", title)
+
+    // Assert the title is as expected
+    await expect(page.getByText("Home")).toBeVisible()
   })
-
-  // Navigate to your app
-  await page.goto("http://localhost:5173/") // replace with your actual URL
-
-  // Verify the page loads without JavaScript errors
-  await expect(page).toHaveTitle("Vite + React + TS") // Replace with actual title of your app
-
-  // Additional checks for your app can go here
 })
