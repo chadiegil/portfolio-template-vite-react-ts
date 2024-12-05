@@ -1,35 +1,62 @@
-name: Playwright Tests
+name: CI
+
 on:
   push:
-    branches: [main, master]
+    branches:
+      - "**"
+      - "beta"
+      - "!master"
   pull_request:
-    branches: [main, master]
+    branches:
+      - "*"
+      - "beta"
+      - "!master"
+    types:
+      - ready_for_review
+
 jobs:
-  test:
-    timeout-minutes: 60
+  lint:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x]
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
-          node-version: lts/*
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-
-      - name: Run Playwright Lint
-        run: npx playwright lint # This will lint the Playwright tests
-
-      - name: Run Playwright tests
-        run: npx playwright test
-
-      - uses: actions/upload-artifact@v4
-        if: ${{ !cancelled() }}
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: npm ci
+      - run: npm run lint
+  build:
+    needs: lint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: npm ci
+      - run: npm run build
+  playwright:
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: npm ci
+      - run: npx playwright install
+      - run: npm run playwright
