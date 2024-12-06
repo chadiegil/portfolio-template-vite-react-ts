@@ -5,10 +5,10 @@ export default function Footer() {
       <div className="flex justify-between mb-10">
         <div className=" w-[50%]">
           <div className="flex justify-start text-2xl">
-            <span className="bg-blue-500 text-white mr-2 rounded-md p-2">
+            {/* <span className="bg-blue-500 text-white mr-2 rounded-md p-2">
               Chadie Gil
-            </span>{" "}
-            <span className="p-2">Porfolio</span>
+            </span>{" "} */}
+            <span>Porfolio</span>
           </div>
           <div className="flex justify-start text-left mt-2 text-gray-400">
             Your one-stop destination for all things web development, from the
