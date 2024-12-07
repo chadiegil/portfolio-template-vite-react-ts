@@ -3,6 +3,7 @@ export const routes = {
   notFound: "*",
   auth: {
     login: "/auth/login",
+    register: "/auth/register",
     forgotPassword: "/auth/forgot",
     resetPassword: "/auth/reset",
   },

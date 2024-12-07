@@ -57,10 +57,12 @@ export default function Navbar() {
           Contact
         </NavLink>
       </nav>
-      <div className="p-2 bg-blue-500 text-white rounded-md flex items-center gap-2 cursor-pointer">
-        Sign in
-        <Icon icon="Signin" size="extraSmall" />
-      </div>
+      <NavLink to="/auth/login" className="text-white">
+        <div className="p-2 bg-blue-500 text-white rounded-md flex items-center gap-2 cursor-pointer">
+          Signin
+          <Icon icon="Signin" size="extraSmall" />
+        </div>
+      </NavLink>
     </div>
   )
 }

@@ -3,10 +3,11 @@ import { refreshToken } from "@redux/slices/auth-slice"
 import { Suspense, useEffect, useState } from "react"
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import { guestRoutes } from "@routes/public-route"
+import { authRoutes } from "@routes/auth"
 
 const router = createBrowserRouter([
   guestRoutes,
-  // authRoutes,
+  authRoutes,
   // privateRoutes,
   // otherRoutes,
 ])
